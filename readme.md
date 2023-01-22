@@ -8,14 +8,14 @@
 
 ---
 
-<br>
-
-> While using static file tool [serve](https://github.com/vercel/serve) I wished the page would reload when making a change.
+> While using my favorite static file tool [serve](https://github.com/vercel/serve), I wished the page would reload when making a change.
 
 <br>
+
 <div align="center">
-   <img width="80%" height="auto" src="https://sean-codes.github.io/serve-dev/example/serve-dev-demo.gif" />
+   <img width="100%" height="auto" src="https://sean-codes.github.io/serve-dev/example/serve-dev-demo.gif" />
 </div>
+
 
 ## Install
 

@@ -1,5 +1,5 @@
 <div align="center">
-   <img width="80%" height="auto" src="./serve-dev.gif?v=2" />
+   <img width="80%" height="auto" src="https://github.com/sean-codes/serve-dev/example/blob/main/serve-dev.gif?raw=true" />
 </div>
 
 <div align="center">
@@ -29,7 +29,7 @@ serve-dev
 ```
 <br>
 
-<img width="80%" height="auto" src="./serve-dev-demo.gif?v=2" />
+<img width="80%" height="auto" src="https://github.com/sean-codes/serve-dev/example/blob/main/serve-dev-demo.gif?raw=true" />
 
 
 ## Help

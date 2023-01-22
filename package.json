@@ -1,0 +1,24 @@
+{
+  "name": "@aloof/serve-dev",
+  "version": "0.0.5",
+  "description": "static serve with reload on change",
+  "main": "serve-dev.js",
+  "scripts": {
+    "example": "node ./src/serve-dev.js"
+  },
+  "bin": {
+    "serve-dev": "./src/serve-dev.js"
+  },
+  "files": [
+    "./src/serve-dev.js"
+  ],
+  "keywords": [
+    "static",
+    "serve",
+    "html",
+    "css",
+    "js"
+  ],
+  "author": "sean-codes",
+  "license": "ISC"
+}

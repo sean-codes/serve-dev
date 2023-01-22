@@ -10,16 +10,21 @@
 
 <br>
 
-> While using [serve](https://github.com/vercel/serve) I wished the page would reload when making a change.
+> While using static file tool [serve](https://github.com/vercel/serve) I wished the page would reload when making a change.
 
 <br>
+<div align="center">
+   <img width="80%" height="auto" src="https://sean-codes.github.io/serve-dev/example/serve-dev-demo.gif" />
+</div>
 
 ## Install
+
 ```shell
-npm install @aloof/serve-dev
+npm install --global @aloof/serve-dev
 ```
 
 ## Use
+
 ```sh
 # within project directory
 
@@ -29,7 +34,6 @@ serve-dev
 ```
 <br>
 
-<img width="80%" height="auto" src="https://sean-codes.github.io/serve-dev/example/serve-dev-demo.gif" />
 
 
 ## Help

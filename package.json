@@ -1,11 +1,12 @@
 {
   "name": "@aloof/serve-dev",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "static serve with reload on change",
   "main": "serve-dev.js",
   "scripts": {
     "example": "node ./src/serve-dev.js"
   },
+  "repository": "https://github.com/sean-codes/serve-dev",
   "bin": {
     "serve-dev": "./src/serve-dev.js"
   },

@@ -303,7 +303,7 @@ function buildDirectoryList(dirPath, url, response) {
          response.end('404', 'utf-8');
          return
       } 
-      
+
       var filesToRender = files.filter(f => !f.startsWith('.'))
 
       var content = `
@@ -330,10 +330,14 @@ function buildDirectoryList(dirPath, url, response) {
    })
 }
 http.createServer(function (request, response) {
-   var urlPath = path.join(pathRunningFrom, '.' + request.url);
+   var requestUrl = request.url.split('?')[0]
+   var urlPath = path.join(pathRunningFrom, '.' + requestUrl)
    var filePath = urlPath
-   var extName = path.extname(filePath);
-   if (!extName) filePath = path.join(filePath, './index.html')
+   var extName = path.extname(filePath)
+   if (!extName) {
+      filePath = path.join(filePath, './index.html')
+      extName = '.html'
+   }
 
    var contentType = {
       '.js': 'text/javascript',
@@ -341,14 +345,16 @@ http.createServer(function (request, response) {
       '.json': 'application/json',
       '.png': 'image/png',
       '.jpg': 'image/jpg',
+      '.gif': 'image/gif',
       '.wav': 'audio/wav',
-   }[extName] || 'text/html'
+      '.html': 'text/html',
+   }[extName] || ''
 
 
    fs.readFile(filePath, function (error, content) {
       if (error) {
          if (error.code == 'ENOENT') {
-            buildDirectoryList(urlPath, request.url, response)
+            buildDirectoryList(urlPath, requestUrl, response)
          }
          else {
             response.writeHead(500);

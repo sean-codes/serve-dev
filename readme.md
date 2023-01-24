@@ -17,6 +17,12 @@
 </div>
 
 
+
+<div align="center">
+   <div>Includes directory lists</div>
+   <img width="50%" height="auto" src="https://sean-codes.github.io/serve-dev/example/example-directory.png" />
+</div>
+
 ## Install
 
 ```shell

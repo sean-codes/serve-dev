@@ -296,11 +296,45 @@ fs.watch(pathRunningFrom, { recursive: true }, (event, filename) => {
 //-----------------------------------------------------------
 // Static File Server
 //-----------------------------------------------------------
+function buildDirectoryList(dirPath, url, response) {
+   fs.readdir( dirPath, (err, files) => {
+      if (err) {
+         response.writeHead(200, { 'Content-Type': 'text/html' });
+         response.end('404', 'utf-8');
+         return
+      } 
+      
+      var filesToRender = files.filter(f => !f.startsWith('.'))
+
+      var content = `
+         <html><body>
+            <style> * { font-family: monospace; }</style>
+            <h3>Index of ${url}</h3>
+            <div>
+               ${filesToRender.map(file => {
+                  // Add a / to directories. Allows relative paths
+                  if (!file.includes('.')) file += '/' 
+
+                  return `
+                     <div>
+                        <a href="${path.join(url, file)}">${file}</a>
+                     </div>
+                  `
+               }).join('')}
+            </div>
+         </body></html>
+      `
+
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end(content, 'utf-8');
+   })
+}
 http.createServer(function (request, response) {
-   var filePath = path.join(pathRunningFrom, '.' + request.url);
+   var urlPath = path.join(pathRunningFrom, '.' + request.url);
+   var filePath = urlPath
    var extName = path.extname(filePath);
    if (!extName) filePath = path.join(filePath, './index.html')
-   console.log(filePath)
+
    var contentType = {
       '.js': 'text/javascript',
       '.css': 'text/css',
@@ -314,8 +348,7 @@ http.createServer(function (request, response) {
    fs.readFile(filePath, function (error, content) {
       if (error) {
          if (error.code == 'ENOENT') {
-            response.writeHead(200, { 'Content-Type': contentType });
-            response.end('404', 'utf-8');
+            buildDirectoryList(urlPath, request.url, response)
          }
          else {
             response.writeHead(500);

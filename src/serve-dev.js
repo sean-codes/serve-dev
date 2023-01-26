@@ -346,8 +346,10 @@ http.createServer(function (request, response) {
       '.png': 'image/png',
       '.jpg': 'image/jpg',
       '.gif': 'image/gif',
+      '.webp': 'image/webp',
       '.wav': 'audio/wav',
       '.html': 'text/html',
+      '.svg': 'image/svg+xml',
    }[extName] || ''
 
 

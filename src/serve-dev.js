@@ -333,7 +333,10 @@ http.createServer(function (request, response) {
    var requestUrl = request.url.split('?')[0]
    var urlPath = path.join(pathRunningFrom, '.' + requestUrl)
    var filePath = urlPath
-   var extName = path.extname(filePath)
+
+   var lastPath = filePath.split('/').pop()   // for paths with . in folder names
+   var extName = path.extname(lastPath)
+   
    if (!extName) {
       filePath = path.join(filePath, './index.html')
       extName = '.html'

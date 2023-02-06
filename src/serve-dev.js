@@ -299,7 +299,7 @@ fs.watch(pathRunningFrom, { recursive: true }, (event, filename) => {
 function buildDirectoryList(dirPath, url, response) {
    fs.readdir( dirPath, (err, files) => {
       if (err) {
-         response.writeHead(200, { 'Content-Type': 'text/html' });
+         response.writeHead(404, { 'Content-Type': 'text/html' });
          response.end('404', 'utf-8');
          return
       } 
@@ -338,6 +338,13 @@ http.createServer(function (request, response) {
    var extName = path.extname(lastPath)
    
    if (!extName) {
+      // check path. if going directly to a folder you likely want the end /
+      if (requestUrl.charAt(requestUrl.length-1) !== '/') {
+         response.writeHead(301, { Location: requestUrl + '/' })
+         return response.end()
+      }
+
+      // if its already got a slash try and send and index.html
       filePath = path.join(filePath, './index.html')
       extName = '.html'
    }

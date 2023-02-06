@@ -367,10 +367,11 @@ http.createServer(function (request, response) {
             response.end();
          }
       } else {
-         if (contentType === 'text/html') {
+         var isIframe = request.headers['sec-fetch-dest'] == 'iframe'
+         if (contentType === 'text/html' && !isIframe) {
             content = content.toString()
             content += `
-               <script>
+            <script>
                   // serve-reload bits
                   (() => {
                      function connect() {
